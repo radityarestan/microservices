@@ -20,7 +20,7 @@ func main() {
 		Handler: app.routes(),
 	}
 
-	app.log.info(fmt.Sprintf("Chat Making Server started at port: %s", webPort))
+	app.log.info(fmt.Sprintf("Chat Making Service started at port: %s", webPort))
 
 	go app.roomCreatorService(queue)
 
