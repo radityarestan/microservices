@@ -27,7 +27,7 @@ type SocketResponse struct {
 type Log struct{}
 
 const (
-	webPort = "8081"
+	webPort = "8080"
 )
 
 var (

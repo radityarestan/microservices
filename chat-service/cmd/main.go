@@ -18,11 +18,11 @@ func main() {
 
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = fmt.Sprintf(":%s", webPort)
+		port = webPort
 	}
 
 	server := &http.Server{
-		Addr:    port,
+		Addr:    fmt.Sprintf(":%s", port),
 		Handler: app.routes(),
 	}
 
