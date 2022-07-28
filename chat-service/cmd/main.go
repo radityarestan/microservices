@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/gorilla/websocket"
 )
@@ -15,12 +16,17 @@ func init() {
 func main() {
 	app := Config{}
 
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = fmt.Sprintf(":%s", webPort)
+	}
+
 	server := &http.Server{
-		Addr:    fmt.Sprintf(":%s", webPort),
+		Addr:    port,
 		Handler: app.routes(),
 	}
 
-	app.log.info(fmt.Sprintf("Chat Service started at port: %s", webPort))
+	app.log.info(fmt.Sprintf("Chat Service started at port: %s", port))
 
 	if err := server.ListenAndServe(); err != nil {
 		app.log.panic(err.Error())
